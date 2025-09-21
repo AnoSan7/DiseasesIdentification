@@ -49,10 +49,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Tailwind / compiled CSS
-# Build the CSS on Render during the build step; if you prefer to track the compiled
-# CSS, remove this line and commit the file.
-frontend/public/output.css
 
 # Model artifacts (recommended to exclude; fetch in deploy instead)
 backend/models/*.joblib
