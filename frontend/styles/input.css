@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@layer utilities {
+	/* When .dark is present on html, these utilities apply */
+	html.dark body {
+		background-color: #0f172a !important;
+		color: #e5e7eb !important;
+	}
+	html.dark header {
+		background-color: #111827 !important;
+		border-color: #374151 !important;
+	}
+	html.dark .bg-white { background-color: #111827 !important; }
+	html.dark .bg-gray-50 { background-color: #0f172a !important; }
+	html.dark .text-gray-800, html.dark .text-gray-900, html.dark .text-gray-700, html.dark .text-gray-600, html.dark .text-gray-500 { color: #e5e7eb !important; }
+	html.dark .border-gray-200 { border-color: #374151 !important; }
+	html.dark .bg-gray-200 { background-color: #374151 !important; }
+
+	/* Toggle knob movement and active track color */
+	.toggle-knob.toggled { transform: translateX(100%); }
+	html.dark #dark-toggle { background-color: #374151 !important; }
+}

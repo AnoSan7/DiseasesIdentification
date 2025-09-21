@@ -1,0 +1,5 @@
+flask
+xgboost
+numpy
+flask-cors
+gunicorn

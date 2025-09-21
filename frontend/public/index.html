@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./output.css" rel="stylesheet">
+        <title>Disease Identification</title>
+        <script src="./script.js" defer></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <header class="fixed top-0 left-0 right-0 bg-white p-4 px-8 flex items-center justify-between border-b border-gray-200 shadow-sm">
+            <div class="flex gap-4 items-center">
+                <img src="./icons/stethoscope.svg" alt="Logo" class="h-[2em] w-[2em]">
+                <div class="text-2xl font-bold text-gray-800">Disease Identification</div>
+            </div>
+            <div class="flex items-center">
+                <div id="dark-toggle" role="switch" aria-checked="false" tabindex="0" class="h-8 w-14 bg-gray-200 rounded-full p-1 flex items-center cursor-pointer transition-colors duration-200">
+                    <div class="h-6 w-6 bg-white rounded-full shadow transform transition-transform duration-200 toggle-knob"></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="min-h-screen flex flex-col items-center pt-28 px-4">
+            <div class="flex justify-center gap-16">
+                <button id="btn-blood" class="px-3 py-1 rounded bg-blue-500 text-white hover:opacity-90">Blood Report</button>
+                <button id="btn-diabetes" class="px-3 py-1 rounded bg-green-600 text-white hover:opacity-90">Diabetes</button>
+                <button id="btn-cardio" class="px-3 py-1 rounded bg-purple-600 text-white hover:opacity-90">Cardiovascular</button>
+                <button id="btn-liver" class="px-3 py-1 rounded bg-yellow-600 text-white hover:opacity-90">Liver Disease</button>
+            </div>
+        <div class="w-full max-w-3xl mt-6">
+            <!-- container for forms -->
+            <section id="forms-container" class="space-y-6">
+                <!-- Blood Report Form -->
+                <form id="form-blood" class="hidden bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Blood Report</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="flex flex-col text-sm text-gray-700">Hemoglobin (HGB)
+                            <div class="text-xs text-gray-500">The amount of hemoglobin in the blood, crucial for oxygen transport.</div>
+                            <input name="HGB" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Platelet Count (PlT)
+                            <div class="text-xs text-gray-500">The number of platelets in the blood, involved in blood clotting.</div>
+                            <input name="PlT" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">White Blood Cell Count (WBC)
+                            <div class="text-xs text-gray-500">The count of white blood cells, vital for immune response.</div>
+                            <input name="WBC" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Red Blood Cell Count (RBC)
+                            <div class="text-xs text-gray-500">The count of red blood cells, responsible for oxygen transport.</div>
+                            <input name="RBC" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Mean Corpuscular Volume (MCV)
+                            <div class="text-xs text-gray-500">Average volume of a single red blood cell.</div>
+                            <input name="MCV" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Mean Corpuscular Hemoglobin (MCH)
+                            <div class="text-xs text-gray-500">Average amount of hemoglobin per red blood cell.</div>
+                            <input name="MCH" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Mean Corpuscular Hemoglobin Concentration (MCHC)
+                            <div class="text-xs text-gray-500">Average concentration of hemoglobin in red blood cells.</div>
+                            <input name="MCHC" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Platelet Distribution Width (PDW)
+                            <div class="text-xs text-gray-500">A measurement of the variability in platelet size distribution in the blood.</div>
+                            <input name="PDW" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Procalcitonin (PCT)
+                            <div class="text-xs text-gray-500">A procalcitonin test can help diagnose risk of sepsis from a bacterial infection.</div>
+                            <input name="PCT" type="number" step="0.0001" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Lymphocyte Percentage (LYMp)
+                            <input name="LYMp" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Neutrophil Percentage (NEUTp)
+                            <input name="NEUTp" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Lymphocyte (absolute) (LYMn)
+                            <input name="LYMn" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Neutrophil (absolute) (NEUTn)
+                            <input name="NEUTn" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Hematocrit (HCT)
+                            <input name="HCT" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <div>
+                            <div id="blood-result" class="text-sm text-gray-600"></div>
+                            <div id="blood-result-probs" class="text-xs text-gray-500 mt-1"></div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="reset" class="px-3 py-1 rounded border">Reset</button>
+                            <button type="submit" data-form="blood" class="px-4 py-2 rounded bg-blue-500 text-white hover:opacity-90 transition-transform duration-150">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Liver Disease Form -->
+                <form id="form-liver" class="hidden bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Liver Disease</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="flex flex-col text-sm text-gray-700">Age
+                            <input name="Age" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Total_Bilirubin
+                            <input name="Total_Bilirubin" type="number" step="0.01" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Direct_Bilirubin
+                            <input name="Direct_Bilirubin" type="number" step="0.01" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Alkaline_Phosphotase
+                            <input name="Alkaline_Phosphotase" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Alamine_Aminotransferase
+                            <input name="Alamine_Aminotransferase" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Aspartate_Aminotransferase
+                            <input name="Aspartate_Aminotransferase" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Total_Protiens
+                            <input name="Total_Protiens" type="number" step="0.01" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Albumin
+                            <input name="Albumin" type="number" step="0.01" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Albumin_and_Globulin_Ratio
+                            <input name="Albumin_and_Globulin_Ratio" type="number" step="0.01" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">Gender
+                            <select name="Gender" class="mt-1 p-2 rounded border border-gray-200 bg-transparent">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <div>
+                            <div id="liver-result" class="text-sm text-gray-600"></div>
+                            <div id="liver-result-probs" class="text-xs text-gray-500 mt-1"></div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="reset" class="px-3 py-1 rounded border">Reset</button>
+                            <button type="submit" data-form="liver" class="px-4 py-2 rounded bg-yellow-600 text-white hover:opacity-90 transition-transform duration-150">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Cardiovascular Form -->
+                <form id="form-cardio" class="hidden bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Cardiovascular Report</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- model expects an 'id' feature; supply a default 0 here -->
+                        <input type="hidden" name="id" value="0" />
+                        <label class="flex flex-col text-sm text-gray-700">age
+                            <div class="text-xs text-gray-500">int (days)</div>
+                            <input name="age" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">height
+                            <div class="text-xs text-gray-500">int (cm)</div>
+                            <input name="height" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">weight
+                            <div class="text-xs text-gray-500">float (kg)</div>
+                            <input name="weight" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">gender
+                            <div class="text-xs text-gray-500">categorical code</div>
+                            <select name="gender" class="mt-1 p-2 rounded border border-gray-200 bg-transparent">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">ap_hi
+                            <div class="text-xs text-gray-500">Systolic blood pressure</div>
+                            <input name="ap_hi" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">ap_lo
+                            <div class="text-xs text-gray-500">Diastolic blood pressure</div>
+                            <input name="ap_lo" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">cholesterol
+                            <div class="text-xs text-gray-500">1: normal, 2: above normal, 3: well above normal</div>
+                            <input name="cholesterol" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">gluc
+                            <div class="text-xs text-gray-500">1: normal, 2: above normal, 3: well above normal</div>
+                            <input name="gluc" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">smoke
+                            <div class="text-xs text-gray-500">binary</div>
+                            <input name="smoke" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">alco
+                            <div class="text-xs text-gray-500">binary</div>
+                            <input name="alco" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">active
+                            <div class="text-xs text-gray-500">binary</div>
+                            <input name="active" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <div>
+                            <div id="cardio-result" class="text-sm text-gray-600"></div>
+                            <div id="cardio-result-probs" class="text-xs text-gray-500 mt-1"></div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="reset" class="px-3 py-1 rounded border">Reset</button>
+                            <button type="submit" data-form="cardio" class="px-4 py-2 rounded bg-purple-600 text-white hover:opacity-90 transition-transform duration-150">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Diabetes Form -->
+                <form id="form-diabetes" class="hidden bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Diabetes Report</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="flex flex-col text-sm text-gray-700">age
+                            <input name="age" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">hypertension
+                            <input name="hypertension" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">heart_disease
+                            <input name="heart_disease" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">bmi
+                            <input name="bmi" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">HbA1c_level
+                            <input name="HbA1c_level" type="number" step="0.1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">blood_glucose_level
+                            <input name="blood_glucose_level" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+
+                        <label class="flex flex-col text-sm text-gray-700">gender_Female
+                            <input name="gender_Female" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">gender_Male
+                            <input name="gender_Male" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">gender_Other
+                            <input name="gender_Other" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+
+                        <label class="flex flex-col text-sm text-gray-700">smoking_history_current
+                            <input name="smoking_history_current" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">smoking_history_ever
+                            <input name="smoking_history_ever" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">smoking_history_former
+                            <input name="smoking_history_former" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">smoking_history_never
+                            <input name="smoking_history_never" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">smoking_history_not_current
+                            <input name="smoking_history_not_current" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                        <label class="flex flex-col text-sm text-gray-700">smoking_history_no_info
+                            <input name="smoking_history_no_info" type="number" step="1" class="mt-1 p-2 rounded border border-gray-200 bg-transparent" />
+                        </label>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <div>
+                            <div id="diabetes-result" class="text-sm text-gray-600"></div>
+                            <div id="diabetes-result-probs" class="text-xs text-gray-500 mt-1"></div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="reset" class="px-3 py-1 rounded border">Reset</button>
+                            <button type="submit" data-form="diabetes" class="px-4 py-2 rounded bg-green-600 text-white hover:opacity-90 transition-transform duration-150">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- area to show collected data locally -->
+            <div id="local-output" class="mt-6 p-4 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hidden"></div>
+        </div>
+    </main>
+
+</body>
+</html>
