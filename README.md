@@ -1,4 +1,4 @@
-# DiseasesIdentification
+# Diseases Identification
 
 Lightweight Flask application that serves a small ML prediction API for disease identification together with a static frontend built with Tailwind.
 
@@ -69,4 +69,9 @@ Contact / next steps
   - Adding a `runtime.txt` and CI/CD manifest for Render or Heroku.
   - Adding a model download / caching step at startup.
   - Adding unit tests for the `Predictor` class and a basic integration test for the `/predict` endpoint.
-# diseaseIdentifier
+ 
+Made by:
+  - Arunesh Gadia
+  - Anomitra Santra
+  - Aryan Raj
+  - Anmol Agarwal
